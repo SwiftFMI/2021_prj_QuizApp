@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Quiz_AppApp: App {
+    init() { FirebaseApp.configure() }
     var body: some Scene {
         WindowGroup {
+            let viewModel = AppViewModel()
             ContentView()
+                .environmentObject(viewModel)
         }
     }
 }

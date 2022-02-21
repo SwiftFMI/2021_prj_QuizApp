@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,7 +11,7 @@
 		88915D3A27C30A72001F55DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88915D3927C30A72001F55DC /* ContentView.swift */; };
 		88915D3C27C30A75001F55DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88915D3B27C30A75001F55DC /* Assets.xcassets */; };
 		88915D3F27C30A75001F55DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88915D3E27C30A75001F55DC /* Preview Assets.xcassets */; };
-		88915D4827C30ACB001F55DC /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88915D4727C30ACB001F55DC /* GoogleService-Info-2.plist */; };
+		88B27A4327C446F20077DC64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88B27A4227C446F20077DC64 /* GoogleService-Info.plist */; };
 		DC2D87D1BCB6233805C5CC21 /* Pods_Quiz_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60AD5563AF46C126213A922 /* Pods_Quiz_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +23,7 @@
 		88915D3B27C30A75001F55DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88915D3E27C30A75001F55DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		88915D4027C30A75001F55DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88915D4727C30ACB001F55DC /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		88B27A4227C446F20077DC64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C60AD5563AF46C126213A922 /* Pods_Quiz_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quiz_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2590629F14AB4E660F6EA94 /* Pods-Quiz App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quiz App.release.xcconfig"; path = "Target Support Files/Pods-Quiz App/Pods-Quiz App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,7 +54,6 @@
 				0853FCD5C2F4F701F4CC0E1A /* Pods-Quiz App.debug.xcconfig */,
 				D2590629F14AB4E660F6EA94 /* Pods-Quiz App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,7 +78,7 @@
 		88915D3627C30A72001F55DC /* Quiz App */ = {
 			isa = PBXGroup;
 			children = (
-				88915D4727C30ACB001F55DC /* GoogleService-Info-2.plist */,
+				88B27A4227C446F20077DC64 /* GoogleService-Info.plist */,
 				88915D3727C30A72001F55DC /* Quiz_AppApp.swift */,
 				88915D3927C30A72001F55DC /* ContentView.swift */,
 				88915D3B27C30A75001F55DC /* Assets.xcassets */,
@@ -158,7 +157,7 @@
 			files = (
 				88915D3F27C30A75001F55DC /* Preview Assets.xcassets in Resources */,
 				88915D3C27C30A75001F55DC /* Assets.xcassets in Resources */,
-				88915D4827C30ACB001F55DC /* GoogleService-Info-2.plist in Resources */,
+				88B27A4327C446F20077DC64 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
