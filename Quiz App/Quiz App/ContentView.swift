@@ -51,7 +51,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             if viewModel.signedIn {
-                Text("You are signed in")
+                CategoryView()
             }else{
                 SignInView()
             }
