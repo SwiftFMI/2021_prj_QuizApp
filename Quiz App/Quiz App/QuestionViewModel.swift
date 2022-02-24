@@ -14,7 +14,7 @@ class QuestionViewModel: ObservableObject {
     func getQuestions(set: String){
         let db = Firestore.firestore()
         
-        db.collection("Geography").getDocuments {
+        db.collection(set).getDocuments {
             (snap, err) in
             guard let data = snap else {return}
             
