@@ -14,6 +14,9 @@ struct QuestionView: View {
     @StateObject var data = QuestionViewModel()
     @State var set: String
     @State var selected = ""
+    @State private var isNext = false
+    @State private var hasTimeElapsed = false
+    @Binding var imageName: String
     
     
     var body: some View {
@@ -31,6 +34,9 @@ struct QuestionView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(),spacing: 20), count: 2)) {
                 Button(question.optionA!) {
                     selected = question.optionA!
+                    answered += 1
+                    index += 1
+                    isNext = true
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -39,6 +45,9 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionA!), width: 3)
                 Button(question.optionB!) {
                     selected = question.optionB!
+                    answered += 1
+                    index += 1
+                    isNext = true
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -47,6 +56,9 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionB!), width: 3)
                 Button(question.optionC!) {
                     selected = question.optionC!
+                    answered += 1
+                    index += 1
+                    isNext = true
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -55,6 +67,9 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionC!), width: 3)
                 Button(question.optionD!) {
                     selected = question.optionD!
+                    answered += 1
+                    index += 1
+                    isNext = true
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -69,6 +84,15 @@ struct QuestionView: View {
         .onAppear(perform: {
             data.getQuestions(set: set)
         })
+        .background(Color.yellow.ignoresSafeArea())
+        .background(NavigationLink (
+            destination: getCorrectView(), isActive: $isNext,
+            label: {
+                EmptyView()
+            }
+        ))
+        .navigationBarBackButtonHidden(true)
+                        
     }
     func color(option: String)->Color{
         if selected == option && option == question.answer!{
@@ -94,4 +118,19 @@ struct QuestionView: View {
             return Color.green
         }
     }
+    private func delayText() {
+            // Delay of 7.5 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
+                hasTimeElapsed = true
+            }
+    }
+    private func getCorrectView() -> AnyView {
+        if(index == data.questions.count - 1){
+            return AnyView(QuestionView( answered: $answered, question:$data.questions[index], index:index, set: set, imageName: $imageName ))
+        } else{
+            return AnyView(SingleCategoryView(answered: answered, image: imageName, set:set ))
+    }
+    
+    
+}
 }

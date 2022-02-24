@@ -34,6 +34,7 @@ struct CategoryView: View {
             Spacer(minLength: 0)
         }
         .background(Color.yellow.ignoresSafeArea())
+        .navigationBarBackButtonHidden(true)
     }
 }
 

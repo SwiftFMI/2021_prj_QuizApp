@@ -12,6 +12,8 @@ struct SingleCategoryView: View {
     @State var image:String
     var set: String
     @State private var isOpen = false
+    @State private var isHome = false
+    @StateObject var data = QuestionViewModel()
     var body: some View {
         VStack{
             Spacer(minLength: 0)
@@ -23,14 +25,28 @@ struct SingleCategoryView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 150)
                 .padding()
-            Button(action: {isOpen = !isOpen}, label: {
+            Text("\(answered)/\(data.questions.count)")
+            Button(action: {isOpen = !isOpen; answered = 0}, label: {
                 Text("Start Quiz")
             })
             .padding(.top, 150)
             .font(.largeTitle)
             .background(
                 NavigationLink (
-                    destination: QA_View(answered: $answered, set:set ), isActive: $isOpen,
+                    destination: QA_View(answered: $answered, set:set, imageName: $image ), isActive: $isOpen,
+                    label: {
+                        EmptyView()
+                    }
+                ))
+            Spacer(minLength: 0)
+            Button(action: {isHome = !isHome; answered = 0}, label: {
+                Text("Go to categories")
+            })
+            .padding(.top, 150)
+            .font(.largeTitle)
+            .background(
+                NavigationLink (
+                    destination: CategoryView(), isActive: $isHome,
                     label: {
                         EmptyView()
                     }
@@ -39,5 +55,9 @@ struct SingleCategoryView: View {
         }
         .frame(width: 700)
         .background(Color.yellow.ignoresSafeArea())
+        .onAppear(perform: {
+            data.getQuestions(set: set)
+        })
+        .navigationBarBackButtonHidden(true) 
     }
 }

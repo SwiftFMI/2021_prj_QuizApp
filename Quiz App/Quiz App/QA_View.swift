@@ -13,6 +13,9 @@ struct QA_View: View {
     @Binding var answered: Int
     var set: String
     @StateObject var data = QuestionViewModel()
+    var index:Int = 0
+    @Binding var imageName: String
+    
     
     var body: some View {
         ZStack{
@@ -24,12 +27,12 @@ struct QA_View: View {
                 }
             }
             else{
-                
-                QuestionView(answered: $answered, question: $data.questions[0], index:0, set:set)
+                QuestionView(answered: $answered, question: $data.questions[index], index:index, set:set, imageName: $imageName)
             }
         }
         .onAppear(perform: {
             data.getQuestions(set: set)
         })
+        .navigationBarBackButtonHidden(true) 
     }
 }
