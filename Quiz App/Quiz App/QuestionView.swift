@@ -34,9 +34,8 @@ struct QuestionView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(),spacing: 20), count: 2)) {
                 Button(question.optionA!) {
                     selected = question.optionA!
-                    answered += 1
-                    index += 1
-                    isNext = true
+                    checkAnswer()
+                    waitForNext()
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -45,9 +44,8 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionA!), width: 3)
                 Button(question.optionB!) {
                     selected = question.optionB!
-                    answered += 1
-                    index += 1
-                    isNext = true
+                    checkAnswer()
+                    waitForNext()
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -56,9 +54,8 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionB!), width: 3)
                 Button(question.optionC!) {
                     selected = question.optionC!
-                    answered += 1
-                    index += 1
-                    isNext = true
+                    checkAnswer()
+                    waitForNext()
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -67,9 +64,8 @@ struct QuestionView: View {
                 .border(colorBorder(option: question.optionC!), width: 3)
                 Button(question.optionD!) {
                     selected = question.optionD!
-                    answered += 1
-                    index += 1
-                    isNext = true
+                    checkAnswer()
+                    waitForNext()
                 }
                 .frame(width: 150, height: 40, alignment: .center)
                 .padding()
@@ -118,19 +114,22 @@ struct QuestionView: View {
             return Color.green
         }
     }
-    private func delayText() {
-            // Delay of 7.5 seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 7.5) {
-                hasTimeElapsed = true
-            }
+    func checkAnswer(){
+        if selected == question.answer!{
+            answered += 1
+        }
+    }
+    func waitForNext(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        index += 1
+                        isNext = true
+                    }
     }
     private func getCorrectView() -> AnyView {
-        if(index == data.questions.count - 1){
+        if(index < data.questions.count ){
             return AnyView(QuestionView( answered: $answered, question:$data.questions[index], index:index, set: set, imageName: $imageName ))
         } else{
             return AnyView(SingleCategoryView(answered: answered, image: imageName, set:set ))
     }
-    
-    
 }
 }

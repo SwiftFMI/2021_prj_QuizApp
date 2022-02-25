@@ -23,8 +23,8 @@ class AppViewModel: ObservableObject{
             guard result != nil, error == nil else {
                 return
             }
-            DispatchQueue.main.sync {
-                self!.signedIn = true
+            DispatchQueue.main.async {
+                self?.signedIn = true
             }
             //Success
         })
@@ -35,13 +35,19 @@ class AppViewModel: ObservableObject{
             guard result != nil, error == nil else {
                 return
             }
-            DispatchQueue.main.sync {
-                self!.signedIn = true
+            DispatchQueue.main.async {
+                self?.signedIn = true
             }
             //Success
             
         })
     }
+    func signOut(){
+        try? auth.signOut()
+        self.signedIn = false
+
+    }
+
 }
 
 struct ContentView: View {

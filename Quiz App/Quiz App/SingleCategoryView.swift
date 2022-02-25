@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SingleCategoryView: View {
-    @State var answered = 0
+    @State var answered:Int
     @State var image:String
     var set: String
     @State private var isOpen = false
@@ -26,8 +26,9 @@ struct SingleCategoryView: View {
                 .frame(height: 150)
                 .padding()
             Text("\(answered)/\(data.questions.count)")
+                .font(.system(size: 30))
             Button(action: {isOpen = !isOpen; answered = 0}, label: {
-                Text("Start Quiz")
+                Text(answered == 0 ? "Start Quiz" : "Try Again")
             })
             .padding(.top, 150)
             .font(.largeTitle)

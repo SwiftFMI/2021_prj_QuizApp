@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CategoryView: View {
+    @EnvironmentObject var viewModel: AppViewModel
     
     @State var isQATapped = false
     @State var answered = 0;
+    @State var isLogged = false
     
     var body: some View {
         VStack{
@@ -32,9 +34,16 @@ struct CategoryView: View {
                 }
             }
             Spacer(minLength: 0)
+            Button("Sign Out", action: {checkSign()})
+                
         }
         .background(Color.yellow.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
+    }
+    func checkSign(){
+        DispatchQueue.main.async{
+            viewModel.signOut()
+        }
     }
 }
 
@@ -59,7 +68,7 @@ struct CategoryCellView: View {
         .padding(.bottom)
         .background(
             NavigationLink (
-                destination: SingleCategoryView(image:"category\(index)", set:categories[index - 1] ), isActive: $isActive,
+                destination: SingleCategoryView(answered: answered, image:"category\(index)", set:categories[index - 1] ), isActive: $isActive,
                 label: {
                     EmptyView()
                 }
